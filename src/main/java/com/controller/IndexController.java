@@ -63,7 +63,7 @@ public class IndexController {
         String userName = getUserName(accessToken, userId);
         System.out.println(userName);
         //返回结果
-        Map<String, Object> resultMap = new HashMap<>();
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("userId", userId);
         resultMap.put("userName", userName);
         ServiceResult serviceResult = ServiceResult.success(resultMap);
