@@ -36,7 +36,37 @@ public class PushMessageUtil {
             userIdList.addAll(UserDepartUtils.listLeaderUserid(userlists));
         }
         String userIdlist = getUserid(userIdList);
-        push(userIdlist, "日报消息", content, "http://devincs.vaiwan.com/page/daily/daily", "");
+        pushText(userIdlist, content);
+        push(userIdlist, "日报消息", content, "eapp://page/daily/daily", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1752243568,253651337&fm=27&gp=0.jpg");
+    }
+
+    @SuppressWarnings("unused")
+    public static void pushText(String useridList, String text) {
+        System.out.println("人员id=" + useridList);
+        System.out.println("人员content=" + text);
+
+        DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_PUSH_MESSAGE);
+
+        OapiMessageCorpconversationAsyncsendV2Request request = new OapiMessageCorpconversationAsyncsendV2Request();
+        request.setUseridList(useridList);
+        request.setAgentId(Const.AGENT_ID);
+        request.setToAllUser(false);
+
+        OapiMessageCorpconversationAsyncsendV2Request.Msg msg = new OapiMessageCorpconversationAsyncsendV2Request.Msg();
+        msg.setMsgtype("text");
+        msg.setText(new OapiMessageCorpconversationAsyncsendV2Request.Text());
+        msg.getText().setContent(text);
+        request.setMsg(msg);
+
+        try {
+            OapiMessageCorpconversationAsyncsendV2Response response = client.execute(request,
+                    AccessTokenUtil.getToken());
+        } catch (ApiException e) {
+            e.printStackTrace();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @SuppressWarnings("unused")
@@ -79,6 +109,6 @@ public class PushMessageUtil {
         if (CollectionUtils.isEmpty(userIdList)) {
             return StringUtils.EMPTY;
         }
-        return StringUtils.join(userIdList, "USER_ID_LIST");
+        return StringUtils.join(userIdList, Const.USER_ID_LIST);
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,7 +70,7 @@ public class UserDepartUtils {
      */
     public static List<Userlist> listUserBypage(Long departmentId) {
         String accessToken = getToken();
-        DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_GET_USER_INFO);
+        DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_DEPART_USER);
         OapiUserListbypageRequest request = new OapiUserListbypageRequest();
         request.setDepartmentId(departmentId);
         request.setOffset(0L);
