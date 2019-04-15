@@ -7,6 +7,7 @@ import java.io.Serializable;
  * 
  * @param <T>
  */
+@SuppressWarnings("serial")
 public class ServiceResult<T> implements Serializable {
 
     private boolean success = false;

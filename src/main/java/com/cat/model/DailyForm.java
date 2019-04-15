@@ -14,7 +14,17 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class DailyForm implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private String userId;
+
     private List<Daily> daList;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public List<Daily> getDaList() {
         return daList;

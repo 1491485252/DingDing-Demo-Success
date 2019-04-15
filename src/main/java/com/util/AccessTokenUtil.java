@@ -1,14 +1,13 @@
 package com.util;
 
 import com.config.Constant;
+import com.config.URLConstant;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.request.OapiGettokenRequest;
 import com.dingtalk.api.response.OapiGettokenResponse;
 import com.taobao.api.ApiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static com.config.URLConstant.URL_GET_TOKKEN;
 
 /**
  * 获取access_token工具类
@@ -18,7 +17,7 @@ public class AccessTokenUtil {
 
     public static String getToken() throws RuntimeException {
         try {
-            DefaultDingTalkClient client = new DefaultDingTalkClient(URL_GET_TOKKEN);
+            DefaultDingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_GET_TOKKEN);
             OapiGettokenRequest request = new OapiGettokenRequest();
 
             request.setAppkey(Constant.APP_KEY);
@@ -34,7 +33,7 @@ public class AccessTokenUtil {
 
     }
 
-    public static void main(String[] args)throws ApiException{
+    public static void main(String[] args) throws ApiException {
         String accessToken = AccessTokenUtil.getToken();
         System.out.println(accessToken);
     }

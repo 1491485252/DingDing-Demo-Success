@@ -15,4 +15,14 @@ public class URLConstant {
      *获取用户姓名的接口url
      */
     public static final String URL_USER_GET = "https://oapi.dingtalk.com/user/get";
+    
+    /**
+     * 获取部门用户详情
+     */
+    public static final String URL_DEPART_USER= "https://oapi.dingtalk.com/user/listbypage";
+    
+    /**
+     * 发送工作通知消息
+     */
+    public static final String URL_PUSH_MESSAGE = "https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2";
 }

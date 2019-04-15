@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
+import com.cat.common.ArmyResult;
 import com.cat.model.Project;
 import com.cat.service.ProjectService;
 
@@ -19,16 +19,14 @@ public class ProjectController {
     private ProjectService projectService;
     
     @RequestMapping(value = "/search", method = {RequestMethod.POST, RequestMethod.GET})
-    public String searchProject() {
-        System.out.println("searchProject进去了");
+    public ArmyResult searchProject() {
         List<Project> projectList = projectService.listProject();
-        System.out.println(JSON.toJSON(projectList));
-        return JSON.toJSONString(projectList);
+        return ArmyResult.of(projectList);
     }
     
     @RequestMapping(value = "/searchNowDate", method = {RequestMethod.GET})
-    public String searchNowDate() {
+    public ArmyResult searchNowDate() {
         String nowDate = projectService.getNowDate();
-        return nowDate;
+        return ArmyResult.of(nowDate);
     }
 }

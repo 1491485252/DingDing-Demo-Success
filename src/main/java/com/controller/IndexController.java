@@ -22,6 +22,7 @@ import java.util.Map;
  */
 @RestController
 public class IndexController {
+    @SuppressWarnings("unused")
     private static final Logger bizLogger = LoggerFactory.getLogger(IndexController.class);
 
     /**
@@ -37,9 +38,11 @@ public class IndexController {
      *
      * @param requestAuthCode 免登临时code
      */
+    @SuppressWarnings("rawtypes")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ServiceResult login(@RequestParam(value = "authCode") String requestAuthCode) {
+        System.out.println("进去了");
         //获取accessToken,注意正是代码要有异常流处理
         String accessToken = AccessTokenUtil.getToken();
 

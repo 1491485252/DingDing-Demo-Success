@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
+import com.cat.common.ArmyResult;
 import com.cat.model.User;
 import com.cat.service.UserService;
 
@@ -25,7 +26,7 @@ public class UserController {
     }
     
     @RequestMapping("/getUser2")
-    public String getUserCs() {
-        return "123";
+    public ArmyResult getUserCs() {
+        return ArmyResult.ok("JUSTSY.E.DEVICE.MSG.UPDATE.FAIL");
     }
 }
