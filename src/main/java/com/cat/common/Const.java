@@ -9,7 +9,6 @@ public interface Const {
      * UTF-8编码
      */
     public static final String ENCODING_UTF8 = "UTF-8";
-    public static final String COMMA = ",";
 
     // 每批次处理的基数
     public static final int BATCH_NUMS = 1000;
