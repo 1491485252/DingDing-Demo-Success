@@ -33,7 +33,7 @@ public class DailyController {
         }
         dailyService.insertDaily(dailyList);
         // 推送消息给领导
-        PushMessageUtil.pushMessage(dailyForm.getUserId(), JSONObject.toJSONString(dailyForm));
+        PushMessageUtil.pushMessage(dailyForm.getUserId(), dailyForm);
         return ArmyResult.ok("添加成功");
     }
 

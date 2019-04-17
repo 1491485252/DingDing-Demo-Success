@@ -13,11 +13,21 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class Daily implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private int id;
     private String projectId;
     private String date;
     private String content;
     private String workHours;
     private String userId;
+    private String projectName;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getProjectId() {
         return projectId;
@@ -57,6 +67,14 @@ public class Daily implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     @Override

@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cat.common.Const;
 import com.cat.common.utils.CollectionUtils;
+import com.cat.model.DailyForm;
 import com.config.URLConstant;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
@@ -18,7 +20,7 @@ import com.taobao.api.ApiException;
 
 public class PushMessageUtil {
 
-    public static void pushMessage(String userId, String content) {
+    public static void pushMessage(String userId, DailyForm dailyForm) {
         if (StringUtils.isEmpty(userId)) {
             return;
         }
@@ -35,15 +37,18 @@ public class PushMessageUtil {
             List<Userlist> userlists = UserDepartUtils.listUserBypage(de);
             userIdList.addAll(UserDepartUtils.listLeaderUserid(userlists));
         }
+        if(!userIdList.contains(userId)) {
+            userIdList.add(userId);
+        }
         String userIdlist = getUserid(userIdList);
-        pushText(userIdlist, content);
-        push(userIdlist, "日报消息", content, "eapp://page/daily/daily", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1752243568,253651337&fm=27&gp=0.jpg");
+        //pushText(userIdlist, content);
+        String messageText = dailyForm.getDate() + "日报";
+        String content = JSONObject.toJSONString(dailyForm);
+        push(userIdlist, dailyForm.getUserName()+"的日报消息", messageText, "eapp://page/dailyDetail/dailyDetail?content=" + content, "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1752243568,253651337&fm=27&gp=0.jpg");
     }
 
     @SuppressWarnings("unused")
     public static void pushText(String useridList, String text) {
-        System.out.println("人员id=" + useridList);
-        System.out.println("人员content=" + text);
 
         DingTalkClient client = new DefaultDingTalkClient(URLConstant.URL_PUSH_MESSAGE);
 

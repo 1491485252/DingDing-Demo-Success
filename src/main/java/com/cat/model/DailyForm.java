@@ -15,8 +15,18 @@ public class DailyForm implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String userId;
+    private String userName;
+    private String date;
 
     private List<Daily> daList;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getUserId() {
         return userId;
@@ -24,6 +34,14 @@ public class DailyForm implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public List<Daily> getDaList() {
