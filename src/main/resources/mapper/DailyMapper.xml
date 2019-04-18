@@ -21,5 +21,22 @@
             )
         </foreach>
     </insert>
+    
+    <select id="listDailyByMonthAndUserId" parameterType="map" resultType="com.cat.model.Daily">
+        SELECT
+            T01.CONTENT AS content,
+            T01.TIME AS date,
+            T01.WORK_HOURS AS workHours,
+            T02.`NAME` AS projectName 
+        FROM
+            `tbl_daily` T01,
+            `tbl_project` T02 
+        WHERE
+            T01.PROJECT_ID = T02.ID 
+            AND SUBSTR( T01.TIME, 1, 7 ) = #{month, jdbcType=VARCHAR} 
+            AND T01.USER_ID = #{userId, jdbcType=VARCHAR} 
+            AND T01.IS_DELETED = 'N' 
+            AND T02.IS_DELETED = 'N' 
+    </select>
 
 </mapper>

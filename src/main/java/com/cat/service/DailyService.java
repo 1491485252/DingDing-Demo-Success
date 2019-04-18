@@ -7,5 +7,7 @@ import com.cat.model.Daily;
 public interface DailyService {
 
     void insertDaily(List<Daily> dailyList);
+    
+    List<Daily> listMonthDaily(String userId,String month);
 
 }

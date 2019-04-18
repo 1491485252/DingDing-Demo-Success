@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,11 @@ public class DailyController {
         // 推送消息给领导
         PushMessageUtil.pushMessage(dailyForm.getUserId(), dailyForm);
         return ArmyResult.ok("添加成功");
+    }
+
+    @RequestMapping(value = "/list/{userId}/{month}", method = { RequestMethod.GET })
+    public ArmyResult insertDaily(@PathVariable("userId") String userId, @PathVariable("month") String month) {
+        return ArmyResult.of(dailyService.listMonthDaily(userId,month));
     }
 
 }
